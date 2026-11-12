@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Kalam:wght@400;700&display=swap');
+:root { color-scheme:dark; --ink:#100714; --pink:#ff62ca; --purple:#6923de; --green:#88ff43; --offwhite:#fff9f0; }
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+body {margin:0;min-height:100dvh;background:#130816;color:var(--offwhite);font-family:'Special Elite','Courier New',monospace;overflow-x:hidden}
+body::before {content:'';position:fixed;inset:-50px;z-index:-2;background-image:linear-gradient(110deg,rgba(0,0,0,.68),rgba(0,0,0,.48)),var(--backdrop);background-size:cover;background-position:center;filter:blur(32px) saturate(1.6);transform:scale(1.07)}
+body::after {content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 32%,rgba(0,0,0,.57)),repeating-linear-gradient(0deg,transparent 0,transparent 4px,rgba(0,0,0,.04) 5px);mix-blend-mode:multiply}
+a,button {-webkit-tap-highlight-color:transparent}
+.poster-frame {min-height:100dvh;display:flex;justify-content:center;align-items:flex-start;padding:clamp(0px,1.3vh,18px) 9px 34px}
+.poster {position:relative;isolation:isolate;container-type:inline-size;width:min(calc(100vw - 18px),calc((100dvh - 38px) * 0.69466),760px);min-width:280px;flex:0 0 auto;aspect-ratio:1067 / 1536;overflow:hidden;background:#230c37;box-shadow:0 0 0 1px rgba(255,255,255,.2),0 26px 90px rgba(0,0,0,.66);touch-action:pan-y}
+.poster--merch {aspect-ratio:1640 / 2360}
+.poster__art {display:block;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.poster__grain {position:absolute;inset:0;pointer-events:none;z-index:17;opacity:.19;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 160 160%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22160%22 height=%22160%22 filter=%22url(%23n)%22 opacity=%22.48%22/%3E%3C/svg%3E');mix-blend-mode:soft-light}
+.poster__light {position:absolute;inset:0;pointer-events:none;z-index:16;opacity:.2;background:radial-gradient(circle at var(--px,50%) var(--py,50%),rgba(255,255,255,.25),transparent 26%);transition:opacity .2s}
+/* Silhouette overlays extracted from each original collage: ghost-drift and float, no layout shifts. */
+.cutout {position:absolute;z-index:4;pointer-events:none;will-change:transform;transform:translate3d(var(--dx,0px),var(--dy,0px),0) rotate(var(--angle,0deg)) scale(var(--scale,1));transition:transform .28s cubic-bezier(.2,.6,.15,1),filter .28s}
+.cutout img {width:100%;height:100%;display:block;user-select:none;animation:float 6s ease-in-out infinite;filter:drop-shadow(1px 1px 0 rgba(250,26,235,.25))}
+.cutout:nth-of-type(2n) img{animation-delay:-2.9s}
+@keyframes float {0%,100%{transform:translateY(0) rotate(-.3deg)}50%{transform:translateY(-5px) rotate(.9deg)}}
+/* Hand-cut clickable polygons sit exactly over the words PRINTED in the art. */
+.hotspot {display:block;position:absolute;z-index:10;border:0;appearance:none;background:none;padding:0;cursor:pointer;transform:rotate(var(--rotate,0deg));transition:filter .19s,transform .25s;touch-action:manipulation;color:inherit;text-decoration:none}
+.hotspot::before {content:'';position:absolute;inset:2% 1%;opacity:0;background:linear-gradient(98deg,rgba(255,255,255,.15),rgba(255,24,233,.2) 45%,rgba(96,255,220,.1));clip-path:polygon(0 19%,96% 0,100% 80%,4% 99%);box-shadow:0 0 15px rgba(240,80,252,.8);transition:opacity .18s}
+.hotspot::after {content:'↗';position:absolute;right:0;top:-10%;font:700 clamp(16px,4cqw,30px)/1 'Kalam',cursive;color:var(--green);text-shadow:2px 3px #130816;opacity:0;transform:translate(-7px,8px) rotate(10deg);transition:all .18s}
+.hotspot:hover,.hotspot:focus-visible {filter:drop-shadow(0px 0px 9px rgba(255,250,252,.65));transform:rotate(var(--rotate,0deg)) scale(1.035)}
+.hotspot:hover::before,.hotspot:focus-visible::before {opacity:1}
+.hotspot:hover::after,.hotspot:focus-visible::after {opacity:1;transform:translate(0,0) rotate(10deg)}
+.hotspot:focus-visible,.back-tab:focus-visible,.web-link:focus-visible,.editor-button:focus-visible {outline:3px dashed #fff;outline-offset:3px}
+.hotspot:active{filter:brightness(1.4);transform:rotate(var(--rotate,0deg)) scale(.99)}
+.hotspot__sr {position:absolute;overflow:hidden;clip:rect(0 0 0 0);width:1px;height:1px;white-space:nowrap}
+.hotspot--bio {left:12%;top:23.4%;width:35%;height:13.5%;--rotate:-9deg}
+.hotspot--socials {left:13.6%;top:33%;width:62%;height:18%;--rotate:-10deg}
+.hotspot--events {left:25%;top:52%;width:52%;height:21%;--rotate:-22deg}
+.hotspot--more {left:34%;top:76%;width:41%;height:16%;--rotate:-25deg}
+.hotspot--instagram {left:13%;top:36%;width:57%;height:16%;--rotate:-12deg}
+.hotspot--spotify {left:16%;top:52.5%;width:58%;height:16.5%;--rotate:-13deg}
+.hotspot--live {left:34%;top:69%;width:34%;height:17%;--rotate:-22deg}
+.hotspot--tiktok {left:71%;top:36%;width:28%;height:25%;--rotate:16deg}
+.back-tab {position:absolute;z-index:23;left:2.5%;top:1.9%;padding:.5em .84em .28em;border:1.5px dashed rgba(255,255,255,.95);background:rgba(14,4,21,.82);box-shadow:4px 4px 0 rgba(233,48,191,.5);transform:rotate(-6deg);color:#fff;font:clamp(13px,3.5cqw,21px)/1.2 'Permanent Marker',cursive;text-decoration:none;letter-spacing:.02em;transition:transform .2s,background .2s}
+.back-tab:hover {transform:rotate(1deg) scale(1.08);background:#ce159f}
+.corner-stamp {position:absolute;bottom:1.35%;right:3%;z-index:19;pointer-events:none;font:clamp(8px,1.5cqw,13px)/1.3 'Special Elite',monospace;letter-spacing:.08em;text-shadow:1px 1px #000;color:rgba(255,255,255,.72);transform:rotate(-3deg)}
+.hover-note {position:absolute;z-index:18;left:3%;bottom:1.3%;background:rgba(20,10,30,.84);font:clamp(10px,1.9cqw,15px)/1.2 'Special Elite',monospace;letter-spacing:.1em;padding:.46em .65em;color:#aaff89;opacity:0;transform:translateY(4px);transition:opacity .18s,transform .18s;pointer-events:none}
+.hover-note.is-visible{opacity:1;transform:translateY(0)}
+.toast {position:fixed;z-index:100;left:50%;bottom:max(22px,env(safe-area-inset-bottom));transform:translate(-50%,15px) rotate(-2deg);color:#161017;background:#ffec35;font:700 16px/1.25 'Kalam',cursive;box-shadow:5px 5px #ea46be;padding:12px 18px;max-width:90vw;text-align:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.visible{opacity:1;transform:translate(-50%,0) rotate(-2deg)}
+/* ABOUT: semi-transparent green paper as photographed, with only the requested words. */
+.bio-card {position:absolute;z-index:7;left:18.3%;top:33%;width:66.8%;min-height:34%;padding:3.2% 3% 2%;display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(19,250,112,.12);border:2px solid rgba(170,255,182,.47);box-shadow:4px 5px 0 rgba(253,29,158,.25),inset 0 0 18px rgba(17,255,119,.17);backdrop-filter:blur(2px);transform:rotate(-1.4deg);transition:transform .34s,background .34s}
+.bio-card:hover {transform:rotate(.5deg) scale(1.018);background:rgba(24,220,122,.24)}
+.bio-card__eyebrow {font:700 clamp(9px,2.1cqw,17px)/1.1 'Special Elite',monospace;letter-spacing:.26em;color:#151b0e;background:rgba(201,255,173,.73);align-self:center;padding:4px 10px;transform:rotate(-3deg);margin:0 0 5%}
+.bio-card__words {display:block;font:clamp(20px,7.4cqw,68px)/1.04 'Permanent Marker','Trebuchet MS',cursive;letter-spacing:-.038em;text-transform:uppercase;color:#fffdf1;-webkit-text-stroke:clamp(.2px,.22cqw,1.6px) #160d1b;text-shadow:2px 3px 0 #351034,5px 6px 0 rgba(233,8,194,.65);word-break:normal}
+.bio-card__words span {display:block;transition:transform .28s}
+.bio-card:hover .bio-card__words span:nth-child(1){transform:translateX(-5px)}
+.bio-card:hover .bio-card__words span:nth-child(3){transform:translateX(6px)}
+.bio-card__note {font:clamp(10px,2cqw,16px)/1.15 'Kalam',cursive;margin-top:5%;letter-spacing:.13em;color:#12111a;text-shadow:0 0 8px #c2ffb3}
+/* EVENTS: transparent lavender event board on the purple panel photographed on the page. */
+.events-board {position:absolute;z-index:8;left:9%;top:55%;width:81%;height:22%;padding:3.5% 4%;background:rgba(46,16,137,.33);border:1.5px dashed rgba(255,255,255,.73);box-shadow:5px 5px 0 rgba(251,151,249,.23),inset 0 0 28px rgba(169,97,255,.11);backdrop-filter:blur(3px);transform:rotate(-2deg);display:flex;flex-direction:column;overflow:hidden}
+.events-board__header{font:clamp(13px,3.3cqw,24px)/1.15 'Permanent Marker',cursive;letter-spacing:.025em;margin-bottom:2%;text-shadow:2px 2px #230c43}
+.events-board__main{flex:1;min-height:0;overflow:auto;scrollbar-color:#cf85fa transparent;scrollbar-width:thin}
+.empty-events{font:clamp(13px,3.5cqw,28px)/1.1 'Permanent Marker',cursive;text-align:center;margin:7% 0 4%;color:#fef9f4;transform:rotate(-2deg);text-shadow:3px 2px #7e48c1}
+.events-board__footer {display:flex;align-items:center;justify-content:center;margin-top:2%;gap:5px}
+.web-link {border:1px solid rgba(255,255,255,.78);display:inline-block;padding:.48em .8em .32em;text-align:center;color:#fff;text-decoration:none;background:rgba(253,98,217,.36);font:clamp(10px,2.05cqw,15px)/1.15 'Special Elite',monospace;letter-spacing:.04em;transition:transform .2s,background .2s;cursor:pointer}
+.web-link:hover {background:#b10099;transform:rotate(3deg)}
+.web-link.is-unset{opacity:.78;cursor:help}
+.event-item{display:grid;grid-template-columns:21% 1fr auto;align-items:center;gap:2%;margin:1.6% 0;padding:1.7% 0;border-bottom:1px dashed rgba(255,255,255,.6)}
+.event-item__date {font:clamp(10px,2.3cqw,18px)/1.15 'Permanent Marker',cursive;color:#aeff73}
+.event-item__name{font:clamp(11px,2.7cqw,20px)/1.05 'Permanent Marker',cursive;color:#fff}
+.event-item__sub{font:clamp(9px,1.75cqw,13px)/1.05 'Special Elite',monospace;opacity:.88;margin-top:2px}
+.event-item__btn{font:clamp(8px,1.85cqw,14px)/1.1 'Permanent Marker',cursive;color:#101010;background:#f1ffb3;padding:5px 7px;text-decoration:none;transform:rotate(2deg)}
+.event-item__btn:hover{background:#ff6bc4}
+/* MERCH: the single message in a translucent patch of the photographed green area. */
+.merch-panel {position:absolute;z-index:8;left:9%;top:73%;width:48%;min-height:13%;display:flex;justify-content:center;flex-direction:column;align-items:center;background:rgba(49,236,56,.14);border:2px dashed rgba(253,251,244,.69);box-shadow:5px 4px 0 rgba(228,17,185,.33);transform:rotate(-8deg);transition:transform .25s,background .25s;backdrop-filter:blur(1.5px)}
+.merch-panel:hover{transform:rotate(-5deg) scale(1.04);background:rgba(214,47,166,.37)}
+.merch-panel__text {font:clamp(22px,7.1cqw,65px)/.96 'Permanent Marker',cursive;text-transform:uppercase;text-align:center;letter-spacing:-.02em;text-shadow:2px 3px #170e15,-2px -2px #000;color:#fff}
+.merch-panel__dot{font:clamp(10px,2cqw,16px)/1.5 'Special Elite',monospace;letter-spacing:.08em;color:#fff}
+/* Accessibly quiet convenience on short, wide and touch devices. */
+@media(min-aspect-ratio:11/10){.poster-frame{align-items:center;padding:12px 4vw}.poster{width:min(calc((100dvh - 28px)*.69466),calc(100vw - 30px),760px)}}
+@media(max-width:400px){.bio-card {left:17%;width:70%;top:33%;min-height:34%}.events-board{left:7%;width:86%;height:24%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition-duration:.01ms!important}.cutout{transform:none!important}}
